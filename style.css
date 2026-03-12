@@ -65,6 +65,7 @@ nav {
   color: #00e5ff !important;
   padding: 10px;
   border-radius: 11px;
+  font-family: Fira Sans Condensed;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -75,6 +76,7 @@ nav {
 .card { background: #333; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
