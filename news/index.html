@@ -1,0 +1,113 @@
+  <style>
+    body {
+      font-family: Montserrat;
+      padding: 0px;
+    }
+
+    .feed-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .feed-item {
+      background: none;
+      padding: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feed-item h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .feed-item a {
+      font-family: Montserrat;
+      font-weight: 650;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .feed-item p {
+      font-family: Montserrat;
+      margin: 0;
+      color: #cdcdcd;
+      flex-grow: 1;
+    }
+
+    .post img {
+      border-radius: 14px;
+      margin: 0 0 12px
+    }
+
+    .feed-item time {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .feed-container {
+        padding: 0px;
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+<body>
+  <div class="feed-container" id="rss-feed"></div>
+
+  <script>
+    const rssUrl = "https://www.antaranews.com/rss/terkini.xml"; // Replace with your RSS feed
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    function timeAgo(dateString) {
+    const now = new Date();
+    const then = new Date(dateString);
+    const seconds = Math.floor((now - then) / 1000);
+
+    const intervals = [
+      { label: 'year', seconds: 31536000 },
+      { label: 'month', seconds: 2592000 },
+      { label: 'week', seconds: 604800 },
+      { label: 'day', seconds: 86400 },
+      { label: 'h', seconds: 3600 },
+      { label: 'm', seconds: 60 },
+      { label: 's', seconds: 1 },
+    ];
+
+    for (const interval of intervals) {
+      const count = Math.floor(seconds / interval.seconds);
+      if (count >= 1) {
+        return `${count}${interval.label} ago`;
+      }
+    }
+    return 'Just now';
+  }
+    
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("rss-feed");
+        data.items.slice(0, 90).forEach(item => {
+          const div = document.createElement("div");
+          div.className = "feed-item";
+          div.innerHTML = `
+            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+            <p>${item.description.substring(0, 350)}...</p>
+            <time>${timeAgo(item.pubDate)}</time>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById("rss-feed").innerText = "Error loading feed.";
+        console.error("Error fetching RSS feed:", error);
+      });
+  </script>
+</body>
