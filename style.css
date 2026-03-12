@@ -77,6 +77,10 @@ nav.scrolled {
   text-decoration: none;
 }
 
+.btn-download:hover {
+  border: 2px solid #00a1ff;
+}
+
 /* Sembunyikan footer di Desktop */
 footer {
     display: none;
@@ -171,3 +175,4 @@ input, textarea {
 .card { background: #333; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
