@@ -203,8 +203,7 @@ input, textarea {
     .grid-tv {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
-        
-}
+  
     footer {
         background-color: #000000b3 !important;
         backdrop-filter: blur(7px);
@@ -250,6 +249,7 @@ input, textarea {
 .card { padding: 1px; border-radius: 8px; font-size: 1.2rem; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
