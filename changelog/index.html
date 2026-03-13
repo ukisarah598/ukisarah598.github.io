@@ -62,6 +62,27 @@
         z-index: 1;
     }
 
+    /* Gaya untuk Gambar di dalam Changelog */
+    .changelog-media {
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #444;
+    }
+
+    .changelog-media img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    /* Efek zoom saat kartu di-hover */
+    .content-card:hover .changelog-media img {
+        transform: scale(1.03);
+    }
+
     .content-card {
         background: #1e1e1e;
         border-radius: 15px;
@@ -159,6 +180,9 @@
                 <span class="badge-version">New Feature</span>
                 <h2>MoonlightBay Player Resmi Rilis</h2>
                 <date>September 11, 2025</date>
+                <div class="changelog-media">
+                  <img src="/assets/img/update-player.jpg" alt="Preview MoonlightBay Player">
+                </div>
                 <p>
                     Menyambut Hari Radio Nasional, kini MoonlightBay Plus menghadirkan <strong>MoonlightBay Player</strong>. Sebuah inovasi untuk mendengarkan Radio dengan praktis, gratis, dan bebas cookie.
                 </p>
